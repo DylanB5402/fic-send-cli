@@ -3,7 +3,6 @@ import smtplib
 from email import encoders
 from email.mime import multipart, base
 import subprocess
-import config
 
 def send_fic(url : str, email_address : str, password : str, kindle_email):
     port = 587
@@ -42,6 +41,3 @@ def download_epub_and_get_file_name(url : str):
 def https_to_http(url : str):
     url = url[0:4] + url [5:]
     return url
-
-# print(download_epub_and_get_file_name('https://archiveofourown.org/works/3704613'))
-# send_fic('https://archiveofourown.org/works/3704613', config.email_address, config.password, config.kindle_email)
