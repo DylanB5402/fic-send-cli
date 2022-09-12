@@ -1,0 +1,14 @@
+beautifulsoup4==4.11.1
+certifi==2022.6.15.1
+charset-normalizer==2.1.1
+click==8.1.3
+colorama==0.4.5
+fichub-cli==0.8.1
+idna==3.3
+loguru==0.6.0
+platformdirs==2.5.2
+requests==2.28.1
+soupsieve==2.3.2.post1
+tqdm==4.64.1
+typer==0.6.1
+urllib3==1.26.12
