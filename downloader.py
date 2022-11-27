@@ -3,10 +3,15 @@ import smtplib
 from email import encoders
 from email.mime import multipart, base
 import subprocess
+import AO3
 
 def send_fic(url : str, email_address : str, password : str, kindle_email):
     port = 587
-    fic_filename = download_epub_and_get_file_name(url)
+    fic_filename = ''
+    if ('archiveofourown' in url):
+        fic_filename = download_epub_from_ao3(url)
+    else:
+        fic_filename = download_epub_and_get_file_name(url)
     print('fic downloaded!')
     email = smtplib.SMTP('smtp.gmail.com', port)
     email.ehlo()
@@ -36,6 +41,14 @@ def download_epub_and_get_file_name(url : str):
     for file in files:
         if file[-5:] == '.epub':
             return file
+
+def download_epub_from_ao3(url: str):
+    id = AO3.utils.workid_from_url(url)
+    work = AO3.Work(id)
+    file_name = f"{work.title}.epub"
+    with open(file_name, "wb") as file:
+        file.write(work.download("EPUB"))
+    return file_name
 
 
 def https_to_http(url : str):
